@@ -1,0 +1,23 @@
+#include <Servo.h> 
+//Change pins
+#define pin_Analog A0
+#define pin_PWM_servo 5
+
+Servo tested_servo;
+
+int value;
+
+void setup() {
+  Serial.begin(9600);
+  tested_servo.attach(pin_PWM_servo);
+  pinMode( pin_Analog,INPUT);
+}
+
+void loop() {
+  value=analogRead(pin_Analog);
+  value=map(value,0,1023,0,180);
+  Serial.print(value);
+  Serial.print("\n");
+  tested_servo.write(value);
+  delay(15);
+}
